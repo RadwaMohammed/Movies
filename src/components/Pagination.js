@@ -6,7 +6,7 @@ const PaginationComponent = ({ getPage, pageCount }) => {
     getPage(data.selected + 1);
   };
 
-  const [width, setWidth] = useState(0);
+  const [width, setWidth] = useState(window.innerWidth);
   useEffect(() => {
     window.addEventListener("resize", () => {
       setWidth(window.innerWidth);
