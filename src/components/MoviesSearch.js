@@ -16,7 +16,15 @@ const MoviesSaerch = () => {
   const search = async (word) => {
     try {
       if (word.trim()) {
-        const res = await axiosInstance.get(`search/movie?query=${word}`);
+        console.log('sss', word)
+        console.log('ww', word.trim())
+        const res = await axiosInstance.get(`search/movie?query=${word.trim()}`);
+        setMovies(res.data.results);
+        const totalPages =
+          res.data?.total_pages > 500 ? 500 : res.data?.total_pages;
+        setpageCount(totalPages);
+      } else {
+        const res = await axiosInstance.get("movie/popular");
         setMovies(res.data.results);
         const totalPages =
           res.data?.total_pages > 500 ? 500 : res.data?.total_pages;
