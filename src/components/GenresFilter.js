@@ -3,14 +3,10 @@ import MovieContext from "../contexts/MoviesContext";
 import PageCountContext from "../contexts/PageCountContext";
 import axiosInstance from "../axiosConfig/axiosinstance";
 
-
-const GenresFilter = ({genres}) => {
-
+const GenresFilter = ({ genres }) => {
   const [selectedGenres, setSelectedGenres] = useState([]);
   const [, setMovies] = useContext(MovieContext);
   const [, setpageCount] = useContext(PageCountContext);
-
-
 
   useEffect(() => {
     const getFilteredMovies = async () => {
@@ -36,22 +32,24 @@ const GenresFilter = ({genres}) => {
   };
 
   return (
-    <div className="d-flex justify-content-center flex-wrap mt-3">
+    <ul className="d-flex justify-content-center flex-wrap mt-3 list-unstyled">
       {genres.map((genre) => (
-        <button
-          className={`genres-btn ${
-            selectedGenres?.includes(genre.id) ? "active" : ""
-          }`}
-          key={genre.id}
-          onClick={() => {
-            handleGenresFilter(genre.id)
-            document.querySelector('.search input').value=""
-          }}
-        >
-          {genre.name}
-        </button>
+        <li key={genre.id}>
+          <button
+            className={`rounded-1 genres-btn ${
+              selectedGenres?.includes(genre.id) ? "active" : ""
+            }`}
+            
+            onClick={() => {
+              handleGenresFilter(genre.id);
+              document.querySelector(".search input").value = "";
+            }}
+          >
+            {genre.name}
+          </button>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 };
 

@@ -1,7 +1,5 @@
-import React from 'react'
-import NavBar from "../components/Navbar";
-import { Container } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import Header from "../components/Header";
 
 const NotFound = () => {
   const navigate = useNavigate();
@@ -10,13 +8,16 @@ const NotFound = () => {
   };
   return (
     <>
-    <NavBar />
+      <Header />
 
-        <Container className='not-found text-center'> <p>صفحة غير موجودة</p> <button className='btn' onClick={() => redirectToHome()}>الصفحة الرئيسية</button></Container>
-        
+      <main className="container not-found text-center">
+        <p className="fs-3">صفحة غير موجودة</p>
+        <button className="btn mt-1" onClick={() => redirectToHome()}>
+          الصفحة الرئيسية
+        </button>
+      </main>
     </>
+  );
+};
 
-  )
-}
-
-export default NotFound
+export default NotFound;
