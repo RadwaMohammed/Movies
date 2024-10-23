@@ -16,8 +16,6 @@ const MoviesSaerch = () => {
   const search = async (word) => {
     try {
       if (word.trim()) {
-        console.log('sss', word)
-        console.log('ww', word.trim())
         const res = await axiosInstance.get(`search/movie?query=${word.trim()}`);
         setMovies(res.data.results);
         const totalPages =
