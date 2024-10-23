@@ -168,7 +168,7 @@ ul.pagination .page-item.active .page-link,
 ============================ */
 .cards-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(13.4rem, 0.6fr));
+  grid-template-columns: repeat(auto-fill, minmax(13.4rem, 0.65fr));
   grid-auto-rows: 25rem;
 }
 
