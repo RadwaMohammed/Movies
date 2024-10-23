@@ -89,7 +89,7 @@ const MovieDetails = () => {
                       )}
 
                       {!!movie?.runtime && (
-                        <div className="d-flex align-items-baseline">
+                        <div className="d-flex align-items-baseline ms-2">
                           <h4 className="fs-5"> مدة الفيلم: </h4>
                           <p className="me-2">{`${movie.runtime}دقيقة`}</p>
                         </div>
