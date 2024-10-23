@@ -12,49 +12,56 @@ const CardMovie = ({ mov, genres }) => {
   );
 
   return (
-    <Link to={`/movie/${mov.id}`} className="card">
-      <img
-        src={
-          mov?.poster_path
-            ? `https://image.tmdb.org/t/p/w500/` + mov?.poster_path
-            : logo
-        }
-        className="card__image"
-        alt={mov?.title || mov?.original_title || ""}
-      />
-      <div className="card__overlay">
-        <div className="overlay__text p-2">
-          <h2>{mov?.original_title || mov?.title || ""}</h2>
-          {mov?.release_date && (
-            <time dateTime={mov.release_date}>
-              {dayjs(mov.release_date).format("MMM D, YYYY")}
-            </time>
-          )}
-          <div className="d-flex gap-1 flex-wrap mt-3 p-2">
-            {movGenres.map((genre) => (
-              <Badge bg="" key={genre.id}>
-                {genre.name}
-              </Badge>
-            ))}
-          </div>
-          <div className="vote">
-            <CircularProgressbar
-              value={mov?.vote_average || 0}
-              maxValue={10}
-              text={`${(mov?.vote_average || 0).toFixed(1)}`}
-              background
-              backgroundPadding={6}
-              styles={buildStyles({
-                backgroundColor: "#181c14",
-                textColor: "#ecdfcc",
-                pathColor: "#ecdfcc",
-                trailColor: "transparent",
-              })}
-            />
-          </div>
+    <li className="movie-card p-1 rounded-2 position-relative">
+      <Link to={`/movie/${mov.id}`}>
+        <img
+          src={
+            mov?.poster_path
+              ? `https://image.tmdb.org/t/p/w500/` + mov?.poster_path
+              : logo
+          }
+          className="card-img w-100 h-100 rounded-3"
+          alt={mov?.title || mov?.original_title || ""}
+        />
+        <div className="card-overlay w-100 h-100 position-absolute top-0 bottom-0 start-0 end-0">
+          <section className="p-2 position-relative w-100 h-100">
+            <h2 className="fw-bold fs-5 text-center lh-base py-2 px-1">
+              {mov?.original_title || mov?.title || ""}
+            </h2>
+            {mov?.release_date && (
+              <time dateTime={mov.release_date} className="d-block">
+                {dayjs(mov.release_date).format("MMM D, YYYY")}
+              </time>
+            )}
+            <ul className="d-flex gap-1 flex-wrap p-2 list-unstyled">
+              {movGenres.map((genre) => (
+                <li key={genre.id}>
+                <Badge bg="">
+                  {genre.name}
+                </Badge>
+                </li>
+
+              ))}
+            </ul>
+            <div className="vote position-absolute">
+              <CircularProgressbar
+                value={mov?.vote_average || 0}
+                maxValue={10}
+                text={`${(mov?.vote_average || 0).toFixed(1)}`}
+                background
+                backgroundPadding={6}
+                styles={buildStyles({
+                  backgroundColor: "#181c14",
+                  textColor: "#ecdfcc",
+                  pathColor: "#ecdfcc",
+                  trailColor: "transparent",
+                })}
+              />
+            </div>
+          </section>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </li>
   );
 };
 
