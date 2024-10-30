@@ -9,21 +9,23 @@ import axiosInstance, { AxiosInterceptor } from "../axiosConfig/axiosinstance";
 import LoaderContext from "../contexts/LoaderContext";
 import Loader from "../components/Loader";
 import Header from "../components/Header";
+import PageContext from "../contexts/PageContext";
 
 const MoviesList = () => {
   const [movies, setMovies] = useContext(MovieContext);
-  const [pageCount, setpageCount] = useContext(PageCountContext);
+  const [, setpageCount] = useContext(PageCountContext);
   const [genres, setGenres] = useState([]);
   const [isLoading] = useContext(LoaderContext);
+  const [, setPagePath] = useContext(PageContext);
 
-  const getPage = async (page) => {
-    try {
-      const res = await axiosInstance.get(`movie/popular?page=${page}`);
-      setMovies(res.data.results);
-    } catch (err) {
-      alert(err);
-    }
-  };
+  // const getPage = async (page) => {
+  //   try {
+  //     const res = await axiosInstance.get(`movie/popular?page=${page}`);
+  //     setMovies(res.data.results);
+  //   } catch (err) {
+  //     alert(err);
+  //   }
+  // };
 
   useEffect(() => {
     const getAllMovies = async () => {
@@ -33,12 +35,13 @@ const MoviesList = () => {
         const totalPages =
           res.data?.total_pages > 500 ? 500 : res.data?.total_pages;
         setpageCount(totalPages);
+        setPagePath("movie/popular?");
       } catch (error) {
         alert(error);
       }
     };
     getAllMovies();
-  }, [setMovies, setpageCount]);
+  }, [setMovies, setpageCount, setPagePath]);
 
   useEffect(() => {
     const getGenres = async () => {
@@ -62,7 +65,7 @@ const MoviesList = () => {
                 <CardMovie mov={mov} key={mov.id} genres={genres} />
               ))}
             </ul>
-            {<PaginationComponent getPage={getPage} pageCount={pageCount} />}
+            {<PaginationComponent />}
           </>
         ) : (
           !isLoading && <h2 className="text-center p-5">لا يوجد أفلام ...</h2>

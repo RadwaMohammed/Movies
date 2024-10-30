@@ -1,11 +1,15 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import ReactPaginate from "react-paginate";
+import PageCountContext from "./../contexts/PageCountContext";
+import usePage from "./../hooks/usePage";
 
-const PaginationComponent = ({ getPage, pageCount }) => {
-  const handlePageClick = (data) => {
-    getPage(data.selected + 1);
+const PaginationComponent = () => {
+  const [pageCount] = useContext(PageCountContext);
+  const [currentPage, setCurrentPage] = useState(1);
+  const handlePageClick = (e) => {
+    setCurrentPage(e.selected + 1);
   };
-
+  usePage(currentPage);
   const [width, setWidth] = useState(window.innerWidth);
   useEffect(() => {
     window.addEventListener("resize", () => {
