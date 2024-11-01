@@ -1,34 +1,24 @@
-import React, { useState, useEffect, useContext } from "react";
+import { useContext } from "react";
 import { Badge } from "react-bootstrap";
 import { useParams, useNavigate } from "react-router-dom";
 import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
-import { useCallback } from "react";
 import dayjs from "dayjs";
-import axiosInstance, { AxiosInterceptor } from "../axiosConfig/axiosinstance";
+import { AxiosInterceptor } from "../axiosConfig/axiosinstance";
 import LoaderContext from "../contexts/LoaderContext";
 import Loader from "../components/Loader";
 import logo from "../images/logo.png";
 import Header from "../components/Header";
+import useMovieDetails from "../hooks/useMovieDetails";
 
 const MovieDetails = () => {
   const param = useParams();
   const navigate = useNavigate();
-  const [movie, setMovie] = useState([]);
   const [isLoading] = useContext(LoaderContext);
-
-  const getMovieDetails = useCallback(async () => {
-    const res = await axiosInstance.get(`movie/${param.id}`);
-    setMovie(res.data);
-  }, [param.id]);
-  useEffect(() => {
-    getMovieDetails();
-  }, [getMovieDetails]);
-
+  const movie = useMovieDetails(param.id);
   const redirectToHome = () => {
     navigate("/");
   };
 
-  console.log(movie);
   return (
     <AxiosInterceptor>
       <div>
