@@ -17,20 +17,6 @@ function AxiosInterceptor({children}) {
   const [, setIsLoading] = useContext(LoaderContext)
   const [isSet, setIsSet] = useState(false)
   useEffect(() => {
-
-    // const resInterceptor = response => {
-    //     return response;
-    // }
-
-    // const errInterceptor = error => {
-    //     return Promise.reject(error);
-    // }
-
-
-    // const interceptor = instance.interceptors.response.use(resInterceptor, errInterceptor);
-
-    // return () => instance.interceptors.response.eject(interceptor);
-
     // Add a request interceptor
     const myInterceptorReq =axiosInstance.interceptors.request.use(function (config) {
       // Do something before request is sent

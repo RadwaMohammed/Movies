@@ -1,9 +1,9 @@
 import { useEffect, useState, useContext } from "react";
 import ReactPaginate from "react-paginate";
-import PageCountContext from "./../contexts/PageCountContext";
-import usePage from "./../hooks/usePage";
+import PageCountContext from "../contexts/PageCountContext";
+import usePage from "../hooks/usePage";
 
-const PaginationComponent = () => {
+const Pagination = () => {
   const [pageCount] = useContext(PageCountContext);
   const [currentPage, setCurrentPage] = useState(1);
   const handlePageClick = (e) => {
@@ -41,4 +41,4 @@ const PaginationComponent = () => {
   );
 };
 
-export default PaginationComponent;
+export default Pagination;

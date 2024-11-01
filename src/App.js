@@ -8,7 +8,7 @@ import NotFound from "./pages/NotFound";
 import LoaderContext from "./contexts/LoaderContext";
 import PageContext from "./contexts/PageContext";
 
-function App() {
+const App = () => {
   const allMovies = useState([]);
   const allPagesCount = useState(0);
   const isLoading = useState(false);

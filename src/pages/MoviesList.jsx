@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import CardMovie from "../components/CardMovie";
-import PaginationComponent from "../components/Pagination";
+import Pagination from "../components/Pagination";
 import GenresFilter from "../components/GenresFilter";
 import MoviesSaerch from "../components/MoviesSearch";
 import { AxiosInterceptor } from "../axiosConfig/axiosinstance";
@@ -29,7 +29,7 @@ const MoviesList = () => {
                 <CardMovie mov={mov} key={mov.id} genres={genres} />
               ))}
             </ul>
-            {<PaginationComponent />}
+            {<Pagination />}
           </>
         ) : (
           !isLoading && <h2 className="text-center p-5">لا يوجد أفلام ...</h2>
